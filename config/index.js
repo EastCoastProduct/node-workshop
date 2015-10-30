@@ -4,7 +4,7 @@
 var config = {};
 
 config.env = process.env.NODE_ENV || 'development';
-
+config.jwtKey = process.env.JWT_KEY || 'shhhhhhhared-secret';
 config.database = process.env.DATABASE || 'mongodb://localhost:27017/development';
 
 module.exports = config;

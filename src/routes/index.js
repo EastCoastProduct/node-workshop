@@ -7,6 +7,9 @@ var controllers = require('../controllers');
 router.route('/status')
   .get(controllers.utils.status);
 
+router.route('/authentication')
+  .post(controllers.authentication);
+
 // catch all not matched requests
 router.route('*')
   .all(controllers.utils.catch404);
