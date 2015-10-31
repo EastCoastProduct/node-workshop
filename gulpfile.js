@@ -24,12 +24,14 @@ gulp.task('lint', function() {
     .pipe(eslint.failOnError());
 });
 
-gulp.task('test-unit', function(cb) {
+gulp.task('test', function() {
+  process.env.DATABASE = 'mongodb://localhost:27017/test';
+  process.env.NODE_ENV = 'test';
   gulp.src(['src/**/*.js'])
     .pipe(istanbul())
     .pipe(istanbul.hookRequire())
     .on('finish', function() {
-      gulp.src(['tests/unit/**/*.js'])
+      gulp.src(['tests/**/*.js'])
         .pipe(mocha())
         .pipe(istanbul.writeReports())
         .once('end', function() {
@@ -38,6 +40,19 @@ gulp.task('test-unit', function(cb) {
           /*eslint-enable */
         });
     });
+});
+
+gulp.task('test-no-cover', function() {
+  process.env.DATABASE = 'mongodb://localhost:27017/test';
+  process.env.NODE_ENV = 'test';
+  gulp.src(['tests/**/*.js'])
+    .pipe(mocha())
+    .once('end', function() {
+      /*eslint-disable */
+      process.exit();
+      /*eslint-enable */
+    });
+
 });
 
 gulp.task('server', function() {

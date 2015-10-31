@@ -1,5 +1,5 @@
-var catchController = require('../../../../src/controllers/utils/catch404');;
-var app = require('../../../../app');
+var catchController = require('../../../src/controllers/utils/catch404');;
+var app = require('../../../app');
 var httpMocks = require('node-mocks-http');
 var sinon = require('sinon');
 var should = require('should');
